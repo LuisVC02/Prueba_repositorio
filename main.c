@@ -4,10 +4,10 @@
 #include "fsl_clock.h"
 #include "fsl_dac.h"
 #include "PIT_control.h"
+#include "signals.h"
 #include "NVIC.h"
 
-#define time_us 100
-
+#define time_us 10
 #define DAC DAC0
 #define DAC_REF kDAC_ReferenceVoltageSourceVref2
 
@@ -34,19 +34,20 @@ int main(void){
 	NVIC_global_enable_interrupts;
 	// --------------------------------------------------------------------------
 
+	uint16_t counter = 0;
 
 	while(1){
 		if(flanco){
-			DAC_SetBufferValue(DAC, 0U, (uint16_t)4095);
-		}
-		else{
-			DAC_SetBufferValue(DAC, 0U, (uint16_t)0);
+			flanco = 0;
+			if(counter >= 4097) counter = 0;
+			else counter ++;
+			DAC_SetBufferValue(DAC, 0U, triangle(counter));
 		}
 	}
 	return 0;
 }
 
 void PIT0_DriverIRQHandler(void){
-	flanco = !flanco;
+	flanco = 1;
 	Clear_interrupt_flag(PIT_module, T0, Timer_flag);
 }
