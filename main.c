@@ -39,8 +39,9 @@ int main(void){
 	while(1){
 		if(flanco){
 			flanco = 0;
-			if(counter >= 4097) counter = 0;
+			if(counter >= 8190) counter = 0;
 			else counter ++;
+			//DAC_SetBufferValue(DAC, 0U, 2048 - 2048*sin(0.00076717*counter));
 			DAC_SetBufferValue(DAC, 0U, triangle(counter));
 		}
 	}

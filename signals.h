@@ -10,7 +10,7 @@
 
 #include <stdint.h>
 
-uint16_t sin(uint16_t paso);
+float sin(float rad);
 
 uint16_t triangle(uint16_t paso);
 
