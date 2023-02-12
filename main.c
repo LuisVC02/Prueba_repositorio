@@ -40,9 +40,8 @@ int main(void){
 		if(flanco){
 			flanco = 0;
 			if(counter >= 8190) counter = 0;
-			else counter ++;
-			//DAC_SetBufferValue(DAC, 0U, 2048 - 2048*sin(0.00076717*counter));
-			DAC_SetBufferValue(DAC, 0U, triangle(counter));
+			else counter += 10;
+			DAC_SetBufferValue(DAC, 0U, sin_DAC(counter));
 		}
 	}
 	return 0;

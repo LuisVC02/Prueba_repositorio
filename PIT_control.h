@@ -27,8 +27,11 @@ typedef enum{
 }PIT_timer;
 // ----------------------------------------------------------
 
-// Interrupcion ---------------------------------------------
-void PIT0_DriverIRQHandler(void); // Vector de interrupcion
+// Interrupciones -------------------------------------------
+void PIT0_DriverIRQHandler(void); // Vector de interrupcion T0
+void PIT1_DriverIRQHandler(void); // Vector de interrupcion T1
+void PIT2_DriverIRQHandler(void); // Vector de interrupcion T2
+void PIT3_DriverIRQHandler(void); // Vector de interrupcion T3
 // ----------------------------------------------------------
 
 

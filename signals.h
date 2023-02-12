@@ -10,10 +10,10 @@
 
 #include <stdint.h>
 
-float sin(float rad);
+uint16_t sin_DAC(uint16_t paso);
 
-uint16_t triangle(uint16_t paso);
+uint16_t triangle_DAC(uint16_t paso);
 
-uint16_t square(uint16_t paso);
+uint16_t square_DAC(uint16_t paso);
 
 #endif /* SIGNALS_H_ */
