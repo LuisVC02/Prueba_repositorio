@@ -21,7 +21,7 @@ void PIT_Initialization(PIT_Type * module, bool debug, PIT_timer timer, uint32_t
 
 	PIT_Init(module, &PIT_Config); // Inicializa el modulo con la configuracion definida en la estructura
 
-	PIT_SetTimerChainMode(module, channel, true); // habilita el timer definido en channel
+	PIT_Chain_mode(module, channel, false);
 
 	// El clock del modulo PIT es el bus clock, es por eso que se obtiene la frecuencia de este
 	PIT_SetTimerPeriod(module, channel, USEC_TO_COUNT(time_us, CLOCK_GetFreq(PIT_clock))); // Establece la recarga del timer USEC_TO_COUNT(us, clock)

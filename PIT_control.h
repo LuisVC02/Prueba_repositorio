@@ -63,10 +63,15 @@ void setTime_ms(PIT_Type * module , PIT_timer timer, uint32_t time_ms);
 // module            @ Direccion base apuntada al PIT
 // timer             @ Timer (del modulo PIT)
 // flag              @ Bandera interrupcion -> Timer_flag (definida al inicio)
+// status            @ Estado, activar o desactivar
 
 // Utilizado en el vector de interrupcion para limpiar la bandera de interrupcion
 
 #define Clear_interrupt_flag(module, timer, flag)           PIT_ClearStatusFlags(module, (pit_chnl_t) timer, flag);
+
+// Habilita el timer con modo chain
+// El modo chain es para utilizar varios timers en cascada.
+#define PIT_Chain_mode(module, channel, status)             PIT_SetTimerChainMode(module, channel, status);
 // --------------------------------------------------------------------------------------
 
 

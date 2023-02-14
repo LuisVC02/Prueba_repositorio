@@ -26,10 +26,10 @@ int main(void){
 	DAC_Enable(DAC, true);
 	DAC_EnableBuffer(DAC, true);
 
-	PIT_Initialization(PIT_module, false, T0, time_us_change, true);
+	PIT_Initialization(PIT_module, false, T1, time_us_change, true);
 
 	// NVIC initialization ------------------------------------------------------
-	NVIC_enable_interrupt_and_priotity(PIT_CH0_IRQ, PRIORITY_1);
+	NVIC_enable_interrupt_and_priotity(PIT_CH1_IRQ, PRIORITY_1);
 	NVIC_global_enable_interrupts;
 	// --------------------------------------------------------------------------
 
@@ -38,16 +38,16 @@ int main(void){
 	while(1){
 		if(flanco){
 			flanco = 0;
+			counter += 100;
 			if(counter >= 8190) counter = 0;
-			else counter += 90;
 			DAC_SetBufferValue(DAC, 0U, sin_DAC(counter));
 		}
 	}
 	return 0;
 }
 
-void PIT0_DriverIRQHandler(void){
+void PIT1_DriverIRQHandler(void){
 	flanco = 1;
-	Clear_interrupt_flag(PIT_module, T0, Timer_flag);
+	Clear_interrupt_flag(PIT_module, T1, Timer_flag);
 }
 

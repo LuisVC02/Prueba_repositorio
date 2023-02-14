@@ -14,12 +14,12 @@
 
 
 uint16_t sin_DAC(uint16_t paso){
-	if(paso <= MAX_DAC_VALUE) return MID_DAC_VALUE+((-1*paso*paso)+(paso*MAX_DAC_VALUE))/MAG_ADJST;
+	if(paso <= MAX_DAC_VALUE) return MID_DAC_VALUE+(paso*(-1*paso+MAX_DAC_VALUE))/MAG_ADJST;
 
 	if(paso > TWO_MAX_DAC_VALUE) return 0;
 
 	paso = paso - MAX_DAC_VALUE;
-	return MID_DAC_VALUE-((-1*paso*paso)+(paso*MAX_DAC_VALUE))/MAG_ADJST;
+	return MID_DAC_VALUE-(paso*(-1*paso+MAX_DAC_VALUE))/MAG_ADJST;
 
 }
 
